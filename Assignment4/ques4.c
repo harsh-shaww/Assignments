@@ -1,5 +1,67 @@
 //4.Write a program in C to check whether two given strings are an anagram.
 
+//METHOD 1
+
+#include<stdio.h>
+#include<string.h>
+
+void sortstring(char st[]){
+    int len=strlen(st);
+    for(int i=0;i<len-1;i++){
+        for(int j=i+1;j<len;j++){
+            if(st[i]>st[j]){
+                char temp=st[i];
+                st[i]=st[j];
+                st[j]=temp;
+            }
+        }
+    }
+}
+int isAnagram(char st1[],char st2[]){
+    int len1=strlen(st1);
+    int len2=strlen(st2);
+    if(len1!=len2){
+        return 0;
+    }
+    sortstring(st1);
+    sortstring(st2);
+    if(strcmp(st1,st2)==0){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+int main(){
+    char st1[100];
+    char st2[100];
+    printf("Enter string 1:");
+    scanf("%s",&st1);
+    printf("Enter string 2:");
+    scanf("%s",&st2);
+    int result=isAnagram(st1,st2);
+    if(result){
+        printf("Strings are Anagram");
+    }
+    else{
+        printf("Strings are not Anagram");
+    }
+}
+
+
+/*
+Output:
+Enter the first string: spear
+Enter the second string: pears
+The two strings are anagrams
+*/
+
+
+
+
+//METHOD 2
+
+
 #include <stdio.h>
 #include <string.h>
 
