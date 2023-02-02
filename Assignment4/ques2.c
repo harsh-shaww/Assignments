@@ -22,3 +22,13 @@ int main(){
     printf("Multiplication:%d",answer);
     return 0;
 }
+
+/*
+Output:
+Enter the number of elements in list:4
+Enter the element 1:3
+Enter the element 2:2
+Enter the element 3:4
+Enter the element 4:5
+Multiplication:120
+*/

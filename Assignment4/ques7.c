@@ -1,54 +1,59 @@
 //Write a function that takes a list and returns a new list with unique elements of the first list. 
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdbool.h>
 
-int compare(const void *a, const void *b) {
-    return (*(int *)a - *(int *)b);
-}
+#define MAX_LEN 100
 
-int *unique(int *arr, int size, int *new_size) {
-    qsort(arr, size, sizeof(int), compare);
-    int *result = malloc(size * sizeof(int));
-    int j = 0;
-    for (int i = 0; i < size; i++) {
-        if (i == 0 || arr[i] != arr[i - 1]) {
-            result[j++] = arr[i];
+int new_list[MAX_LEN];
+
+int add_unique(int list[], int len) {
+    int i, j, k = 0;
+    bool flag;
+    for (i = 0; i < len; i++) {
+        flag = true;
+        for (j = 0; j < k; j++) {
+            if (new_list[j] == list[i]) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            new_list[k++] = list[i];
         }
     }
-    *new_size = j;
-    return result;
+    return k;
 }
 
 int main() {
-    int n;
-    printf("Enter the number of elements in array:");
-    scanf("%d",&n);
-    int arr[n];
-    for(int i=0;i<n;i++){
-        printf("Enter the element %d:",i+1);
-        scanf("%d",&arr[i]);
+    int list[MAX_LEN];
+    int len, i, unique_len;
+
+    // Input the list
+    printf("Enter the length of the list: ");
+    scanf("%d", &len);
+    printf("Enter the elements of the list: ");
+    for (i = 0; i < len; i++) {
+        scanf("%d", &list[i]);
     }
-    int size = sizeof(arr) / sizeof(int);
-    int new_size;
-    int *result = unique(arr, size, &new_size);
-    for (int i = 0; i < new_size; i++) {
-        printf("%d ", result[i]);
+
+    // Call the function to get the new list with unique elements
+    unique_len = add_unique(list, len);
+
+    // Print the new list
+    printf("The new list with unique elements is: ");
+    for (i = 0; i < unique_len; i++) {
+        printf("%d ", new_list[i]);
     }
     printf("\n");
-    free(result);
+
     return 0;
 }
 
+
 /*
 Output:
-Enter the number of elements in array:7
-Enter the element 1:1
-Enter the element 2:2
-Enter the element 3:2
-Enter the element 4:2
-Enter the element 5:3
-Enter the element 6:3
-Enter the element 7:4
-1 2 3 4
+Enter the length of the list: 6     
+Enter the elements of the list: 1 2 2 3 4 4
+The new list with unique elements is: 1 2 3 4
 */
