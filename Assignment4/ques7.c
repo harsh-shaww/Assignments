@@ -29,7 +29,6 @@ int main() {
     int list[MAX_LEN];
     int len, i, unique_len;
 
-    // Input the list
     printf("Enter the length of the list: ");
     scanf("%d", &len);
     printf("Enter the elements of the list: ");
@@ -37,10 +36,8 @@ int main() {
         scanf("%d", &list[i]);
     }
 
-    // Call the function to get the new list with unique elements
     unique_len = add_unique(list, len);
 
-    // Print the new list
     printf("The new list with unique elements is: ");
     for (i = 0; i < unique_len; i++) {
         printf("%d ", new_list[i]);
