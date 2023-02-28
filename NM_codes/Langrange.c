@@ -1,41 +1,36 @@
 #include<stdio.h>
-int main()
+#include<conio.h>
+
+void main()
 {
-    float x[100],y[100],a,s=1,t=1,k=0;
-    int n,i,j,d=1;
-    printf("\n\n Enter the number of the terms of the table: ");
-    scanf("%d",&n);
-    printf("\n\n Enter the respective values of the variables x and y: \n");
-    for(i=0; i<n; i++)
-    {
-        scanf ("%f",&x[i]);
-        scanf("%f",&y[i]);
-    }
-    printf("\n\n The table you entered is as follows :\n\n");
-    for(i=0; i<n; i++)
-    {
-        printf("%0.3f\t%0.3f",x[i],y[i]);
-        printf("\n");
-    }
-    while(d==1)
-    {
-        printf(" \n\n\n Enter the value of the x to find the respective value of y\n\n\n");
-        scanf("%f",&a);
-        for(i=0; i<n; i++)
-        {
-            s=1;
-            t=1;
-            for(j=0; j<n; j++)
-            {
-                if(j!=i)
-                {
-                    s=s*(a-x[j]);
-                    t=t*(x[i]-x[j]);
-                }
-            }
-            k=k+((s/t)*y[i]);
-        }
-        printf("\n\n The respective value of the variable y is: %f",k);
-        
-    }
+	 float x[100], y[100], xp, yp=0, p;
+	 int i,j,n;
+	 /* Input Section */
+	 printf("Enter number of data: ");
+	 scanf("%d", &n);
+	 printf("Enter data:\n");
+	 for(i=1;i<=n;i++)
+	 {
+		  printf("x[%d] = ", i);
+		  scanf("%f", &x[i]);
+		  printf("y[%d] = ", i);
+		  scanf("%f", &y[i]);
+	 }
+	 printf("Enter interpolation point: ");
+	 scanf("%f", &xp);
+	 /* Implementing Lagrange Interpolation */
+	 for(i=1;i<=n;i++)
+	 {
+		  p=1;
+		  for(j=1;j<=n;j++)
+		  {
+			   if(i!=j)
+			   {
+			    	p = p* (xp - x[j])/(x[i] - x[j]);
+			   }
+		  }
+		  yp = yp + p * y[i];
+	 }
+	 printf("Interpolated value at %.3f is %.3f.", xp, yp);
+	 getch();
 }
